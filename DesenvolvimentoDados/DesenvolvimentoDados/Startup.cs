@@ -1,4 +1,6 @@
 using DesenvolvimentoDados.Data;
+using DesenvolvimentoDados.Repositorio;
+using DesenvolvimentoDados.Repositorio.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +29,7 @@ namespace DesenvolvimentoDados
         {
             services.AddControllersWithViews();
             services.AddDbContext<BancoContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DataBase")));
+            services.AddScoped<IClienteRepositorio, Clienterepositorio>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
