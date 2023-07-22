@@ -46,9 +46,30 @@ namespace DesenvolvimentoDados.Controllers
             return View(lista);
         }
 
-        public IActionResult Editar()
+        public IActionResult Editar(int id)
         {
-            return View();
+            ClienteModel cliente = _clienteRepositorio.ListarPorId(id);
+            return View(cliente);
+        }
+
+        public IActionResult Alterar(ClienteModel cliente)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _clienteRepositorio.Atualizar(cliente);
+                    TempData["MensagemSucesso"] = "Cliente Cadastrado com sucesso";
+                    return RedirectToAction("Consulta");
+                }
+            }
+            catch (System.Exception erro)
+            {
+                TempData["MensagemErro"] = $"Ops, não conseguimos cadastrar seu cliente, tente novamente, detalhe do erro: {erro.Message}";
+                return RedirectToAction("Consulta");
+            }
+
+            return View("Editar", cliente);
         }
 
         public IActionResult ApagarConfirmacao()

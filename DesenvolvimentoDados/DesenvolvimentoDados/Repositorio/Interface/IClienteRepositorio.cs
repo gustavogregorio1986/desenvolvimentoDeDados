@@ -5,8 +5,12 @@ namespace DesenvolvimentoDados.Repositorio.Interface
 {
     public interface IClienteRepositorio
     {
+        ClienteModel ListarPorId(int id);
+
         List<ClienteModel> ListarTodos();
 
         ClienteModel Adicionar(ClienteModel cliente);
+
+        ClienteModel Atualizar(ClienteModel cliente);
     }
 }

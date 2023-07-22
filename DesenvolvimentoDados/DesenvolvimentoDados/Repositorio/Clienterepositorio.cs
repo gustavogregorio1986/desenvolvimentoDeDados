@@ -15,6 +15,11 @@ namespace DesenvolvimentoDados.Repositorio
             _context = context;
         }
 
+        public ClienteModel ListarPorId(int id)
+        {
+            return _context.Clientes.FirstOrDefault(x => x.Id == id);
+        }
+
         public List<ClienteModel> ListarTodos()
         {
             return _context.Clientes.ToList();
@@ -26,6 +31,23 @@ namespace DesenvolvimentoDados.Repositorio
             _context.SaveChanges();
 
             return cliente;
+        }
+
+        public ClienteModel Atualizar(ClienteModel cliente)
+        {
+            ClienteModel clienteDb = ListarPorId(cliente.Id);
+
+            if (clienteDb == null) throw new System.Exception("Houve um erro na atualização do cliente");
+
+            clienteDb.Nome = cliente.Nome;
+            clienteDb.Email = cliente.Email;
+            clienteDb.Cpf = cliente.Cpf;
+            clienteDb.Profissao = cliente.Profissao;
+
+            _context.Clientes.Update(clienteDb);
+            _context.SaveChanges();
+
+            return clienteDb;
         }
     }
 }
