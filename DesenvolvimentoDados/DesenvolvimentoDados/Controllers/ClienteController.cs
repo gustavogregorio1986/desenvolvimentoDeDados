@@ -26,14 +26,15 @@ namespace DesenvolvimentoDados.Controllers
                 if (ModelState.IsValid)
                 {
                     _clienteRepositorio.Adicionar(cliente);
-                    return RedirectToAction("Index");
+                    TempData["MensagemSucesso"] = "Cliente cadastrado com sucesso";
+                    return RedirectToAction("Criar");
                 }
 
                 return View(cliente);
             }
-            catch (System.Exception)
+            catch (System.Exception erro)
             {
-
+                TempData["MensagemErro"] = $"Ops, não conseguimos cadastrar seu cliente, tente novamente, detalhe do erro: {erro.Message}";
                 return RedirectToAction("Index");
             }
         }
