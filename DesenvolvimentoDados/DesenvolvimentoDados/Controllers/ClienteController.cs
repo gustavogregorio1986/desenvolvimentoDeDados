@@ -1,6 +1,7 @@
 ﻿using DesenvolvimentoDados.Models;
 using DesenvolvimentoDados.Repositorio.Interface;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace DesenvolvimentoDados.Controllers
 {
@@ -41,7 +42,8 @@ namespace DesenvolvimentoDados.Controllers
 
         public IActionResult Consulta()
         {
-            return View();
+            List<ClienteModel> lista = _clienteRepositorio.ListarTodos();
+            return View(lista);
         }
 
         public IActionResult Editar()

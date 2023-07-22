@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<ClienteModel>
+@{
     ViewData["Title"] = "Consultar a lista do Cliente";
 }
 
@@ -19,38 +20,22 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Paulo</td>
-      <td>paulo@gmail.com</td>
-      <td>1234567890</td>
-      <td>odontologista</td>
-      <td>
-          <a role="button" asp-controller="Cliente" asp-action="Editar" class="btn btn-primary">Editar</a>
-           <a role="button" asp-controller="Cliente" asp-action="ApagarConfirmacao" class="btn btn-danger">Apagar</a>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Rafael</td>
-      <td>rafael@gmail.com</td>
-      <td>0987654321</td>
-      <td>desenvolvedor C#</td>
-       <td>
-          <a role="button" asp-controller="Cliente" asp-action="Editar" class="btn btn-primary">Editar</a>
-           <a role="button" asp-controller="Cliente" asp-action="ApagarConfirmacao" class="btn btn-danger">Apagar</a>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>larry@gmail.com</td>
-      <td>7890654321</td>
-      <td>desenvolvedor PHP</td>
-       <td>
-          <a role="button" asp-controller="Cliente" asp-action="Editar" class="btn btn-primary">Editar</a>
-           <a role="button" asp-controller="Cliente" asp-action="ApagarConfirmacao" class="btn btn-danger">Apagar</a>
-      </td>
-    </tr>
+     @if(Model != null && Model.Any())
+     {
+       foreach(ClienteModel cliente in Model)
+       {
+          <tr>
+            <th scope="row">@cliente.Id</th>
+            <td>@cliente.Nome</td>
+            <td>@cliente.Email</td>
+            <td>@cliente.Cpf</td>
+            <td>@cliente.Profissao</td>
+            <td>
+               <a role="button" asp-controller="Cliente" asp-action="Editar" class="btn btn-primary">Editar</a>
+               <a role="button" asp-controller="Cliente" asp-action="ApagarConfirmacao" class="btn btn-danger">Apagar</a>
+            </td>            
+          </tr>
+       }          
+     }
   </tbody>
 </table>

@@ -1,6 +1,8 @@
 ﻿using DesenvolvimentoDados.Data;
 using DesenvolvimentoDados.Models;
 using DesenvolvimentoDados.Repositorio.Interface;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DesenvolvimentoDados.Repositorio
 {
@@ -11,6 +13,11 @@ namespace DesenvolvimentoDados.Repositorio
         public Clienterepositorio(BancoContext context)
         {
             _context = context;
+        }
+
+        public List<ClienteModel> ListarTodos()
+        {
+            return _context.Clientes.ToList();
         }
 
         public ClienteModel Adicionar(ClienteModel cliente)
