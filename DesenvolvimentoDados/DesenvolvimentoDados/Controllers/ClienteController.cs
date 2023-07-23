@@ -100,12 +100,12 @@ namespace DesenvolvimentoDados.Controllers
                 TempData["MensagemErro"] = $"Ops, não conseguimos cadastrar seu cliente, tente novamente, detalhe do erro: {erro.Message}";
                 return RedirectToAction("Consulta");
             }
-            return View();
         }
 
-        public IActionResult ListarPorNome()
+        public IActionResult ListarPorNome(string nome)
         {
-            return View();
+            _clienteRepositorio.ListarPorNome(nome);
+            return RedirectToAction("ListarPorNome");
         }
     }
 }

@@ -14,5 +14,7 @@ namespace DesenvolvimentoDados.Repositorio.Interface
         ClienteModel Atualizar(ClienteModel cliente);
 
         bool Apagar(int id);
+
+        ClienteModel ListarPorNome(string nome);
     }
 }

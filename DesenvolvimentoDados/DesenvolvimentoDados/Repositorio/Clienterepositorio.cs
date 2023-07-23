@@ -61,5 +61,10 @@ namespace DesenvolvimentoDados.Repositorio
 
             return true;
         }
+
+        public ClienteModel ListarPorNome(string nome)
+        {
+            return _context.Clientes.FirstOrDefault(x => x.Nome == nome);
+        }
     }
 }
