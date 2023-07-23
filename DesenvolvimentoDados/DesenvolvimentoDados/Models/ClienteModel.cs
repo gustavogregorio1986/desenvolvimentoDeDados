@@ -10,6 +10,7 @@ namespace DesenvolvimentoDados.Models
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "Informe o e-mail do Cliente")]
+        [EmailAddress(ErrorMessage = "O email informado não é valido")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Informe o Cpf do Cliente")]

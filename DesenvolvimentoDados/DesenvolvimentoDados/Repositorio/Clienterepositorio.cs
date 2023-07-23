@@ -49,5 +49,17 @@ namespace DesenvolvimentoDados.Repositorio
 
             return clienteDb;
         }
+
+        public bool Apagar(int id)
+        {
+            ClienteModel clientedb = ListarPorId(id);
+
+            if (clientedb == null) throw new System.Exception("Houve um erro na deleção do cliente");
+
+            _context.Clientes.Remove(clientedb);
+            _context.SaveChanges();
+
+            return true;
+        }
     }
 }

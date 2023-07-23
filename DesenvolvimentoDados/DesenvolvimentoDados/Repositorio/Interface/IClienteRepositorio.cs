@@ -12,5 +12,7 @@ namespace DesenvolvimentoDados.Repositorio.Interface
         ClienteModel Adicionar(ClienteModel cliente);
 
         ClienteModel Atualizar(ClienteModel cliente);
+
+        bool Apagar(int id);
     }
 }

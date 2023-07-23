@@ -72,13 +72,34 @@ namespace DesenvolvimentoDados.Controllers
             return View("Editar", cliente);
         }
 
-        public IActionResult ApagarConfirmacao()
+        public IActionResult ApagarConfirmacao(int id)
         {
-            return View();
+            ClienteModel clientedb = _clienteRepositorio.ListarPorId(id);
+            return View(clientedb);
         }
         
-        public IActionResult Apagar()
+        public IActionResult Apagar(int id)
         {
+            try
+            {
+                bool apagado = _clienteRepositorio.Apagar(id);
+
+                if(apagado)
+                {
+                    TempData["MensagemSucesso"] = "Cliente Apagado com sucesso";
+                }
+                else
+                {
+                    TempData["MensagemSucesso"] = "Ops, não conseguimos apagar seu cliente";
+                }
+
+                return RedirectToAction("Consulta");
+            }
+            catch (System.Exception erro)
+            {
+                TempData["MensagemErro"] = $"Ops, não conseguimos cadastrar seu cliente, tente novamente, detalhe do erro: {erro.Message}";
+                return RedirectToAction("Consulta");
+            }
             return View();
         }
 
